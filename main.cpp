@@ -1,14 +1,27 @@
 //Author: Alex Kuntzler
+
 #include <iostream>
 #include <fstream>
 #include <string>
+#include<sstream>
+#include <vector>
+
+
+
 using namespace std;
+string RandomDistinctColors();
+string ConvertColor(int R, int G, int B);
+int StoreColor(vector<string>,string filename);
 
 int main()
 
 {
   int CVR,CVG,CVB;
+  vector <string> Hex;
+  string DupeChecker;
+  int itteration = 0;
   int increment = 0;
+  int linenumber = 1;
   while (increment < 3)
   {
     int fail = 0;
@@ -73,9 +86,21 @@ int main()
   }
   string filename;
   cout << "Please enter the name of your file." << endl;
+  Hex.push_back(ConvertColor(CVR,CVG,CVB));  
   cin.ignore();
   getline(cin,filename);
-  ofstream MyFile;
+ 
+    for( int i = 1; i < 5; i++)
+    {
+      Hex.push_back(RandomDistinctColors());
+    }
+    StoreColor(Hex,filename);
+
+    
+
+
+  
+ /* ofstream MyFile;
   MyFile.open(filename+=".txt");
   
    if (MyFile.is_open())
@@ -108,28 +133,80 @@ int main()
      
    }
     MyFile.close();
-
+*/
     ifstream file;
     file.open(filename);
-    if (file.is_open()){   //checking whether the file is open
+    if (file.is_open())
+    {   
     
       string line;
       while(getline(file,line))
-      { //read data from file object and put it into string.
-         cout << line << "\n"; //print the data of the string
+      { 
+         cout << line << "\n"; 
       }
-      file.close(); //close the file object.
+      file.close(); 
     
     }
-   
-    
-  
-
-
-
-
-  
-
-
   return 0;
+  
+}
+
+string ConvertColor(int R, int G, int B)
+{
+  std::stringstream ss;
+	
+		ss << "#";
+	ss << std::hex << (R << 16 | G << 8 | B);
+	return ss.str();
+  }
+
+
+
+int StoreColor(vector <string> Hex,string filename)
+{
+  ofstream MyFile;
+   MyFile.open(filename);
+  if (MyFile.is_open())
+  {
+    for (int i = 0; i < 5; i++)
+  {
+  
+   
+       MyFile << Hex[i] << endl;
+    
+  }
+       MyFile.close();
+     }
+      return 0;
+   }
+   
+   
+  
+
+string RandomDistinctColors()
+{
+  
+ string TempHex;
+ int linenumber = 0;
+  int n = rand() % 141+1;
+  ifstream file ("colorlist.txt");
+    
+    if (file.is_open()){   
+    
+      string line;
+    while(getline(file,line))
+      {
+        linenumber++;
+        if (linenumber == 2*n)
+       {
+         TempHex = line;
+         
+       }
+         
+     }
+     
+    
+    }
+    return TempHex;
+
 }

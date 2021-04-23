@@ -1,4 +1,4 @@
-# !!!Replace with your unique project name!!!
+# !!!!!!
 
 ## Description
 
@@ -6,7 +6,7 @@
 
 ### v0.2 Updates
 
-*Coming soon*
+*After asking the user for the 3 RGB color codes it now converts it to hexadecimal and then stores it into a vector. The randomly generated colors are now chosen from a list of colors that are all distinct from one another, this is to prevent the randomly generated colors from being indistinguishable by chance. Also the list is made up up the HTML names on the odd lines followed by its corresponding hexadecimal number on the next even line. This should be useful in later on to give the user a better feel over what colors they got.*
 
 ### v1.0 Updates
 
@@ -30,15 +30,20 @@ Here is an example of the program running:
 
 ```
 !!!Please enter your desired color value for red (0-255)
-    2
+    21
     Please enter your desired color value for green (0-255)
-    256
+    299
     Your color value needs to be between 0 and 255
-    3
+    21
     Please enter your desired color value for blue (0-255)
-    4
+    21
     Please enter the name of your file.
     coolcolors
+    #151515
+    #87CEEB
+    #FFA07A
+    #008B8B
+    #FFA500
 !!!
 ```
 
@@ -50,7 +55,7 @@ Here is an example of the program running:
 
 ### Console Input and Output
 
-!!!Innput and output were used to guide the user to enter in their desired color value and to make sure that they didn't input a value above or below the range of numbers they were asked to pick from. It was also used to ask them to choose a name for their file!!!
+!!!Input and output were used to guide the user to enter in their desired color value and to make sure that they didn't input a value above or below the range of numbers they were asked to pick from. It was also used to ask them to choose a name for their file!!!
 
 ### Decisions
 
@@ -66,11 +71,11 @@ Here is an example of the program running:
 
 ### Arrays/Vectors
 
-*Coming in version 0.2*
+*There is only a vector used in this code, and it is to store all of the hexadecimal color values before storing them onto a separate file.*
 
 ### Functions
 
-*Coming in version 0.2*
+*I made 3 different functions. The first is to turn the 3 user inputted RGB color values into hexadecimal a hexadecimal color value. The next function picks numbers from the colorlist to be used as the randomly generated colors. It does this by generating random numbers 1-141 then multiplies them by 2 making sure that an even number is selected as all of the hexadecimal numbers are on even lines in the colorlist textfile. The last function simply stores all of the color values aquired.*
 
 ### Classes
 
