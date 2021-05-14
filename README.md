@@ -10,7 +10,8 @@
 
 ### v1.0 Updates
 
-*Coming soon*
+*Most of the project has been overhauled. All colors are now in HTML names and instead of asking for 3 color values it now asks for what color you want, and then asks what shade of the color you would like to add to your list.I also added a function so the randomly generated colors will not pick colors that are bad match ups for your base color in terms of different kinds of color blindness. Such as not pairing red and green together and so on. It also now checks to make sure that every color on the list is unique.Then, at the end it reads the file contents to you.*
+
 
 
 ## Developer
@@ -29,21 +30,38 @@ g++ --std=c++11 *.cpp -o cvp
 Here is an example of the program running:
 
 ```
-!!!Please enter your desired color value for red (0-255)
-    21
-    Please enter your desired color value for green (0-255)
-    299
-    Your color value needs to be between 0 and 255
-    21
-    Please enter your desired color value for blue (0-255)
-    21
-    Please enter the name of your file.
-    coolcolors
-    #151515
-    #87CEEB
-    #FFA07A
-    #008B8B
-    #FFA500
+!!!Please pick a number corresponding to your desired color. 
+ 1. Red 
+ 2. Pink 
+ 3. Orange 
+ 4. Yellow 
+ 5. Purple 
+ 6. Green 
+ 7. Blue 
+ 8. Brown 
+ 9. White 
+ 10. Gray 
+
+1
+Please pick a shade of Red from this list
+1. IndianRed
+2. LightCoral
+3. Salmon
+4. DarkSalmon
+5. LightSalmon
+6. Crimson
+7. Red
+8. FireBrick
+9. DarkRed
+7
+Please enter the name of your file.
+mycolors
+Red
+LightSalmon
+Orange
+DarkOrange
+Cyan
+Tomato
 !!!
 ```
 
@@ -79,5 +97,5 @@ Here is an example of the program running:
 
 ### Classes
 
-*Coming in version 1.0*
+*I used a class to store the randomly generated colors and into its private variable and then from there store that onto a file *
 

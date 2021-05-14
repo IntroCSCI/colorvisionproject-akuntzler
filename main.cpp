@@ -5,135 +5,116 @@
 #include <string>
 #include<sstream>
 #include <vector>
+#include "colors.h"
 
 
 
 using namespace std;
-string RandomDistinctColors();
-string ConvertColor(int R, int G, int B);
+string RandomDistinctColors(int choice);
 int StoreColor(vector<string>,string filename);
+int FileSearch(int upper, int lower);
+bool DupeChecker(int RND,vector<int>&list);
+vector<int> RandomNumberList;
+vector<string>ColorChoices;
 
 int main()
 
 {
   int CVR,CVG,CVB;
-  vector <string> Hex;
-  string DupeChecker;
-  int itteration = 0;
+  int choice;
+  int choice2;
+  ColorStorage Html;
   int increment = 0;
   int linenumber = 1;
-  while (increment < 3)
+  int upperbound;
+  int lowerbound;
+  cout << "Please pick a number corresponding to your desired color. \n 1. Red \n 2. Pink \n 3. Orange \n 4. Yellow \n 5. Purple \n 6. Green \n 7. Blue \n 8. Brown \n 9. White \n 10. Gray \n" << endl; 
+  cin >> choice;
+  switch (choice)
   {
-    int fail = 0;
-    switch (increment)
-    {
-      case 0 :
-      if (fail == 0)
-      {
-       cout << "Please enter your desired color value for red (0-255)" << endl;
-      }
-      cin >> CVR;
-      if (CVR >= 0 && CVR<=255 )
-      {
-        increment ++;
-        fail = 0;
-      }
-      else
-      {
-        cout << "Your color value needs to be between 0 and 255." << endl;
-        fail ++;
-      }
-      break;
-      case 1 :
-      if (fail == 0)
-      {
-        cout << "Please enter your desired color value for green (0-255)" << endl;
-      }
-      cin >> CVG;
-      if (CVG >= 0 && CVG<=255 )
-      {
-        increment ++;
-        fail = 0;
-      }
-      
-      else{
-        fail++;
-        cout << "Your color value needs to be between 0 and 255." << endl;
-      }
-      break;
-
-      case 2 :
-      if (fail == 0)
-      {
-        cout << "Please enter your desired color value for blue (0-255)" << endl;
-      }
-      cin >> CVB;
-      if (CVB >= 0 && CVB<=255 )
-      {
-        increment ++;
-        fail = 0;
-      }
-      else 
-      {
-        fail++;
-        cout << "Your color value needs to be between 0 and 255." << endl;
-      }
-      break;
-      default :
-      break;
-    }
-    
+    case 1 :
+    lowerbound = 1;
+    upperbound = 10;
+    cout << "Please pick a shade of Red from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break;
+    case 2 :
+    lowerbound = 10;
+    upperbound = 16;
+    cout << "Please pick a shade of pink from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break;
+    case 3 :
+    lowerbound = 16;
+    upperbound = 20;
+    cout << "Please pick a shade of orange from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break;
+    case 4 :
+    lowerbound = 20;
+    upperbound = 31;
+    cout << "Please pick a shade of yellow from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break;
+    case 5 :
+    lowerbound = 31;
+    upperbound = 50;
+    cout << "Please pick a shade of purple from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break;
+    case 6 :
+    lowerbound = 50;
+    upperbound = 73;
+    cout << "Please pick a shade of green from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break;
+    case 7 :
+    lowerbound = 73;
+    upperbound = 98;
+    cout << "Please pick a shade of blue from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break;
+    case 8 :
+    lowerbound = 98;
+    upperbound = 115;
+    cout << "Please pick a shade of brown from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break;
+    case 9 :
+    lowerbound = 115;
+    upperbound = 132;
+    cout << "Please pick a shade of white from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break;
+    case 10 :
+    lowerbound = 132;
+    upperbound = 142;
+    cout << "Please pick a shade of grey from this list" << endl;
+    FileSearch(upperbound,lowerbound);
+    cin >> choice2;
+    break; 
   }
+  Html.StoreColors(ColorChoices[choice2 - 1]); 
   string filename;
-  cout << "Please enter the name of your file." << endl;
-  Hex.push_back(ConvertColor(CVR,CVG,CVB));  
+  cout << "Please enter the name of your file." << endl;  
   cin.ignore();
   getline(cin,filename);
  
-    for( int i = 1; i < 5; i++)
+    for( int i = 0; i < 5; i++)
     {
-      Hex.push_back(RandomDistinctColors());
-    }
-    StoreColor(Hex,filename);
-
+      Html.StoreColors((RandomDistinctColors(choice)));
     
-
-
-  
- /* ofstream MyFile;
-  MyFile.open(filename+=".txt");
-  
-   if (MyFile.is_open())
-   {
-     for (int i = 0; i<6;i++)
-        if (i==0)
-        {
-          MyFile << CVR << endl;
-          MyFile << CVG << endl;
-          MyFile << CVB << endl;
-        }
-        else if (i == 1)
-        {
-          MyFile << 255- CVR << endl;
-          MyFile << 255 - CVG << endl;
-          MyFile << 255 - CVB << endl;
-        }
-        else 
-        {
-          for(int i = 0; i<3;i++)
-          {
-            int randomColor;
-            randomColor = rand() % 256;
-            MyFile << randomColor << endl;
-
-          }
-
-        }
-
-     
-   }
-    MyFile.close();
-*/
+    }
+    Html.FileStore(filename);
     ifstream file;
     file.open(filename);
     if (file.is_open())
@@ -150,46 +131,142 @@ int main()
   return 0;
   
 }
-
-string ConvertColor(int R, int G, int B)
-{
-  std::stringstream ss;
-	
-		ss << "#";
-	ss << std::hex << (R << 16 | G << 8 | B);
-	return ss.str();
-  }
-
-
-
-int StoreColor(vector <string> Hex,string filename)
-{
-  ofstream MyFile;
-   MyFile.open(filename);
-  if (MyFile.is_open())
-  {
-    for (int i = 0; i < 5; i++)
-  {
-  
-   
-       MyFile << Hex[i] << endl;
-    
-  }
-       MyFile.close();
-     }
-      return 0;
-   }
-   
-   
-  
-
-string RandomDistinctColors()
+// Generates random colors, checks for duplicates, and for problematic colors
+string RandomDistinctColors(int choice)
 {
   
  string TempHex;
+ bool Checker = true;
  int linenumber = 0;
-  int n = rand() % 141+1;
-  ifstream file ("colorlist.txt");
+ int n;
+ switch (choice)
+ {
+   case 1 :
+      while(Checker)
+        {
+          n = rand() %141+1;
+          //inequalities based on colorlist2.txt to exclude colors based on types of color blindness
+          if(n >= 50 and n < 73)
+            {
+            }
+          else
+            {
+              if(DupeChecker(n,RandomNumberList) == false)
+              {
+                Checker = false;
+              }
+            }
+   }
+      break;
+   case 4 :
+      while(Checker)
+        {
+          n = rand() %141+1;
+          if(n >= 50 & n < 73)
+              {
+              }
+            else
+              {
+                if(DupeChecker(n,RandomNumberList)== false)
+              {
+                Checker = false;
+              }
+              }
+   }
+      break;
+   case 5:
+      while(Checker)
+        {
+          n = rand() %141+1;
+          if(n >= 73 & n < 98)
+            {
+            }
+          else
+            {
+              if(DupeChecker(n,RandomNumberList)== false)
+              {
+                Checker = false;
+              }
+            }
+   }
+   break;
+   case 6 :
+      while(Checker)
+        {
+          n = rand() %141+1;
+          if((n>=1 & n<10 )&(n>= 50 & n < 73)&(n>=73 & n<98)&(n>=132 & n<=142))
+          {
+          }
+          else
+            {
+              if(DupeChecker(n,RandomNumberList)== false)
+              {
+                Checker = false;
+              }
+            }
+        }
+   break;
+   case 7 :
+      while(Checker)
+        {
+          n = rand() %141+1;
+          if((n >= 50 & n < 73)&(n>=31 & n<50)&(n>=132 & n<=142))
+            {
+            }
+          else
+            {
+              if(DupeChecker(n,RandomNumberList)== false)
+              {
+                Checker = false;
+              }
+            }
+        }
+   break;
+   case 8 :
+      while(Checker)
+        {
+          n = rand() %141+1;
+          if(n >= 50 & n < 73)
+            {
+            }
+          else
+            {
+              if(DupeChecker(n,RandomNumberList)== false)
+              {
+                Checker = false;
+              }
+            }
+        }
+   break;
+   case 10 :
+      while(Checker)
+        {
+          n = rand() %141+1;
+          if((n >= 50 & n < 73)&(n>=73 & n<=98))
+            {
+            }
+          else
+            {
+              if(DupeChecker(n,RandomNumberList)== false)
+              {
+                Checker = false;
+              }
+            }
+        }
+   break;
+   default :
+   while(Checker)
+   {
+    n = rand() %141+1;
+   if(DupeChecker(n,RandomNumberList)== false)
+              {
+                Checker = false;
+              }
+   }
+    break;
+
+ }
+  ifstream file ("colorlist2.txt");
     
     if (file.is_open()){   
     
@@ -197,16 +274,76 @@ string RandomDistinctColors()
     while(getline(file,line))
       {
         linenumber++;
-        if (linenumber == 2*n)
+        if (linenumber == n)
        {
-         TempHex = line;
-         
-       }
+         TempHex = line;    
+        }
          
      }
      
-    
     }
     return TempHex;
 
+}
+
+// Gives the list of color shades
+int FileSearch(int upper, int lower)
+{
+  int linenumber = 0;
+  int option = 0;
+  ifstream file;
+    file.open("colorlist2.txt");
+    if (file.is_open())
+    {   
+    
+      string line;
+      while(getline(file,line))
+      { 
+        linenumber++;
+        if (linenumber >=lower & linenumber <upper)
+        {
+         option++;
+         ColorChoices.push_back(line);
+         cout << option << ". " << line << "\n";
+         
+        } 
+      }
+      file.close(); 
+    
+    }
+    return 0;
+}
+// Checks for duplicate random numbers
+bool DupeChecker(int RND,vector<int>&list)
+{
+  bool Checker = true;
+  while (Checker)
+ {
+  if (RandomNumberList.size() == 0)
+  {
+    list.push_back(RND);
+  }
+  else
+  {
+    for(int i = 0; i < RandomNumberList.size();i++)
+      {
+        if( RND == list[i])
+          {
+            
+            return true;
+          
+    
+         }
+        else
+          {
+           Checker = false;
+           break;
+      
+
+          }
+       }
+  }
+ }
+   list.push_back(RND);
+    return Checker;
 }
